@@ -11,6 +11,12 @@ import UploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapte
 import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
+import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
+import Strikethrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough';
+import Code from '@ckeditor/ckeditor5-basic-styles/src/code';
+import Subscript from '@ckeditor/ckeditor5-basic-styles/src/subscript';
+import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript';
+import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight';
 import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
 import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
 import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
@@ -28,6 +34,9 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
+import RemoveFormat from '@ckeditor/ckeditor5-remove-format/src/removeformat';
+import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
+import CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -38,6 +47,12 @@ ClassicEditor.builtinPlugins = [
 	Autoformat,
 	Bold,
 	Italic,
+	Underline,
+	Strikethrough,
+	Code,
+	Subscript,
+	Superscript,
+	Highlight,
 	BlockQuote,
 	CKFinder,
 	EasyImage,
@@ -54,7 +69,10 @@ ClassicEditor.builtinPlugins = [
 	Paragraph,
 	PasteFromOffice,
 	Table,
-	TableToolbar
+	TableToolbar,
+	RemoveFormat,
+	Alignment,
+	CodeBlock
 ];
 
 // Editor configuration.
@@ -65,17 +83,28 @@ ClassicEditor.defaultConfig = {
 			'|',
 			'bold',
 			'italic',
-			'link',
+			'underline',
+			'subscript',
+			'superscript',
+			'highlight',
+			'removeFormat',
+			'|',
+			'alignment',
+			'|',
 			'bulletedList',
 			'numberedList',
+			'|',
+			'codeBlock',
 			'|',
 			'indent',
 			'outdent',
 			'|',
-			'imageUpload',
+			'link',
 			'blockQuote',
 			'insertTable',
+			'imageUpload',
 			'mediaEmbed',
+			'|',
 			'undo',
 			'redo'
 		]
@@ -95,6 +124,38 @@ ClassicEditor.defaultConfig = {
 			'mergeTableCells'
 		]
 	},
+	alignment: {
+		options: [ 'left', 'right', 'center', 'justify' ]
+	},
+	highlight: {
+		options: [
+			{
+				model: 'yellowMarker',
+				class: 'marker-yellow',
+				title: 'Yellow marker',
+				color: 'var(--ck-highlight-marker-yellow)',
+				type: 'marker'
+			},
+			{
+				model: 'greenMarker',
+				class: 'marker-green',
+				title: 'Green marker',
+				color: 'var(--ck-highlight-marker-green)',
+				type: 'marker'
+			},
+		]
+	},
+	codeBlock: {
+		languages: [
+			{ language: 'plaintext', label: 'Plain text' },
+			{ language: 'cs', label: 'C#' },
+			{ language: 'java', label: 'Java' },
+			{ language: 'javascript', label: 'JavaScript' },
+			{ language: 'typescript', label: 'TypeScript' },
+			{ language: 'xml', label: 'HTML/XML' }
+		]
+	},
+
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
 };
